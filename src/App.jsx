@@ -11,7 +11,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get('https://leetcode-revision.onrender.com/', { withCredentials: true })
+    axios.get('/', { withCredentials: true })
       .then(response => {
         console.log("Response data:", response.data);
         if (response.data.user) {

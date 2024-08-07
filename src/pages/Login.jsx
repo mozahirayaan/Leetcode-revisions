@@ -3,7 +3,7 @@ import React from 'react';
 
 const Login = () => {
     const handleClick = () => {
-        window.location.href = 'https://leetcode-revision.onrender.com/auth/google'; // Redirects user to OAuth provider
+        window.location.href = '/auth/google'; // Redirects user to OAuth provider
     };
 
     return (
