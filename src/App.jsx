@@ -11,22 +11,26 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get('https://leetcode-revision.onrender.com/check-session', { withCredentials: true })
-      .then(response => {
-        console.log("Response data:", response.data);
-        if (response.data.user) {
-          setIsAuthenticated(true);
-          setUser(response.data.user);
-          console.log(user);
-        } else {
-          setIsAuthenticated(false);
-          console.log(user);
-        }
-      })
-      .catch(err => {
-        console.error("Error fetching data:", err);
+    fetch('https://leetcode-revision.onrender.com/check-session', {
+      method: 'GET',
+      credentials: 'include'  // Send cookies with the request
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Response data:", data);
+      if (data.user) {
+        setIsAuthenticated(true);
+        setUser(data.user);
+        console.log(data.user);
+      } else {
         setIsAuthenticated(false);
-      });
+        console.log(data.user);
+      }
+    })
+    .catch(err => {
+      console.error("Error fetching data:", err);
+      setIsAuthenticated(false);
+    });
   }, []);
 
   const router = createBrowserRouter([
