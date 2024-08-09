@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Check from './pages/Check';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
+import 'dotenv/config'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -64,7 +65,7 @@ function App() {
   ]);
 
   return (
-    <GoogleOAuthProvider clientId="952138734571-e4n7dh3ck2e3iuriba1kiijm247tbgl8.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId=process.env.GOOGLE_ID>
     <div>
       <RouterProvider router={router} />
     </div>
