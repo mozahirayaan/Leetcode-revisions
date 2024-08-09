@@ -65,7 +65,7 @@ function App() {
   ]);
 
   return (
-    <GoogleOAuthProvider clientId=process.env.GOOGLE_ID>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_ID}>
     <div>
       <RouterProvider router={router} />
     </div>
