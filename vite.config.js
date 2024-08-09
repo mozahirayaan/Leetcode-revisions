@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server : {
     proxy:{
-      '/api': 'https://leetcode-revision.onrender.com'
+      '/api': 'http://leetcode-revision.onrender.com'
     }
   },
   plugins: [react()],

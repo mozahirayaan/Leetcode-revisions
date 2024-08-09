@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import './App.css';
-import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
-import Check from './pages/Check';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import React from 'react';
 import { jwtDecode } from "jwt-decode";
 
-function App() {
+
+
+
+function Check() {
   const [user, setUser] = useState(null);
 
   // Check if the user is already logged in on component mount
@@ -42,34 +39,23 @@ function App() {
     setUser(null);
   };
 
-  
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: user ? <><Dashboard user={user} /></> : <div className="flex items-center justify-center h-screen bg-black">
-      <div className="text-center">
-          <h1 className="text-2xl font-bold mb-6 text-white">Login with Google</h1>
-          <GoogleLogin
-      onSuccess={handleSuccess}
-      onError={handleError}
-    />
-      </div>
-  </div>
-    },
-    {
-      path: "/check",
-      element: <><Check/></>
-    }
-  ]);
-
   return (
     <GoogleOAuthProvider clientId="952138734571-e4n7dh3ck2e3iuriba1kiijm247tbgl8.apps.googleusercontent.com">
-    <div>
-      <RouterProvider router={router} />
-    </div>
+      <div className="App">
+        {user ? (
+          <div>
+            <h2>Welcome, {user.email}</h2>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <GoogleLogin
+            onSuccess={handleSuccess}
+            onError={handleError}
+          />
+        )}
+      </div>
     </GoogleOAuthProvider>
   );
 }
 
-export default App;
+export default Check;

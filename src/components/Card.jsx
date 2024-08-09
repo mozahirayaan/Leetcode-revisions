@@ -53,7 +53,7 @@ function Card(props) {
 
   const handleDeleteClick = (e) => {
     e.stopPropagation();
-    axios.post('https://leetcode-revision.onrender.com/delete-data', { slug: props.slug }, { withCredentials: true })
+    axios.post('https://leetcode-revision.onrender.com/delete-data', { slug: props.slug, username: props.user.email }, { withCredentials: true })
       .then(response => {
         console.log(response.data);
         setDisplay('hidden');

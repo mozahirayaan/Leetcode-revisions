@@ -10,14 +10,20 @@ function Dashboard(props) {
   const [type,setType]=useState('All');
   
   useEffect(() => {
-    axios.get('https://leetcode-revision.onrender.com/get-data', { withCredentials: true })
+    if (props.user) {
+      axios.post('https://leetcode-revision.onrender.com/get-data', {
+        googleId: props.user.sub,  // This is typically the Google ID
+        username: props.user.email,
+        name: props.user.name
+      })
       .then(response => {
         setData(response.data);
       })
       .catch(error => {
         console.error('There was an error fetching the data!', error);
       });
-  }, []);
+    }
+  }, [props.user]);
 
   const handleTypeChange = (event) => {
     setType(event.target.value);
@@ -46,7 +52,7 @@ function Dashboard(props) {
         key={index}
         slug={item.url}
         category={item.category}
-        notes={item.notes}
+        notes={item.notes} user={props.user}
       />
     ) : null
   ))}
