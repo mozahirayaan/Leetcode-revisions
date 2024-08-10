@@ -17,7 +17,16 @@ function App() {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedUser = jwtDecode(token);
-      setUser(decodedUser);
+      const expTimestamp = decodedUser.exp;
+      const expiryDate = expTimestamp * 1000;
+      const currentTime = Date.now();
+      if (expiryDate < currentTime) {
+        localStorage.removeItem('token');
+      }
+      else{
+        setUser(decodedUser);
+      }
+
     }
   }, []);
 
