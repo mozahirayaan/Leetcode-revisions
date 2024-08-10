@@ -8,7 +8,6 @@ import Login from './pages/Login';
 import Check from './pages/Check';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
-import 'dotenv/config'
 
 function App() {
   const [user, setUser] = useState(null);
