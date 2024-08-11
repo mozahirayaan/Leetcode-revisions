@@ -45,7 +45,7 @@ function Dashboard(props) {
         </div>
       </div>
       <div className='flex flex-wrap justify-center'>
-      {data.map((item, index) => (
+      {data.slice().reverse().map((item, index) => (
     (item.category === type || type === 'All') ? (
       <Card 
         className="mb-6"
